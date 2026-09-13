@@ -1,0 +1,44 @@
+[
+  {
+    "descricao": "aluno de Matemática entrega uma lista de exercícios",
+    "novoAluno": {
+      "nome": "Fernanda Rocha",
+      "email": "fernanda.rocha@example.com",
+      "matricula": "2024010",
+      "senha": "senha123"
+    },
+    "disciplinaId": "disciplina-matematica",
+    "trabalho": {
+      "titulo": "Lista de Exercícios 3",
+      "descricao": "Resolução dos exercícios de 1 a 15 do capítulo 5."
+    }
+  },
+  {
+    "descricao": "aluno de História entrega uma resenha",
+    "novoAluno": {
+      "nome": "Gustavo Pires",
+      "email": "gustavo.pires@example.com",
+      "matricula": "2024011",
+      "senha": "senha456"
+    },
+    "disciplinaId": "disciplina-historia",
+    "trabalho": {
+      "titulo": "Resenha - Segunda Guerra Mundial",
+      "descricao": "Resenha crítica sobre os principais eventos do conflito."
+    }
+  },
+  {
+    "descricao": "aluno de Programação Web entrega um projeto",
+    "novoAluno": {
+      "nome": "Helena Tavares",
+      "email": "helena.tavares@example.com",
+      "matricula": "2024012",
+      "senha": "senha789"
+    },
+    "disciplinaId": "disciplina-programacao-web",
+    "trabalho": {
+      "titulo": "Projeto Final - API REST",
+      "descricao": "Implementação de uma API REST simples com autenticação."
+    }
+  }
+]
