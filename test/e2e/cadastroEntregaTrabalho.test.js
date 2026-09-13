@@ -7,16 +7,34 @@ import { expect } from 'chai';
 import app from '../../src/app.js';
 import { loginAsAdmin } from '../helpers/adminAuth.js';
 import { loginAsAluno } from '../helpers/alunoAuth.js';
+import Aluno from '../../src/models/aluno.model.js';
+import Matricula from '../../src/models/matricula.model.js';
+import Trabalho from '../../src/models/trabalho.model.js';
 
 const cenarios = JSON.parse(
   fs.readFileSync(fileURLToPath(new URL('../fixtures/cadastroEntregaTrabalho.json', import.meta.url)))
 );
+
+async function limparAlunosDosCenarios() {
+  const emails = cenarios.map((cenario) => cenario.novoAluno.email);
+  const alunosExistentes = await Aluno.find({ email: { $in: emails } });
+  const idsExistentes = alunosExistentes.map((aluno) => aluno.id);
+
+  if (idsExistentes.length === 0) return;
+
+  await Promise.all([
+    Trabalho.deleteMany({ alunoId: { $in: idsExistentes } }),
+    Matricula.deleteMany({ alunoId: { $in: idsExistentes } }),
+    Aluno.deleteMany({ _id: { $in: idsExistentes } }),
+  ]);
+}
 
 describe('Fluxo: admin cadastra aluno e aluno registra entrega de trabalho', () => {
   let adminToken;
 
   before(async () => {
     adminToken = await loginAsAdmin(app);
+    await limparAlunosDosCenarios();
   });
 
   cenarios.forEach((cenario) => {
